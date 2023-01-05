@@ -9,4 +9,5 @@ public class Student {
     private String name;
     private Long classId;
     private String sex;
+    private String photo_url;
 }
