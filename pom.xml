@@ -13,6 +13,7 @@
     <version>0.0.1-SNAPSHOT</version>
     <name>system</name>
     <description>system</description>
+    <packaging>jar</packaging>
     <properties>
         <java.version>1.8</java.version>
     </properties>
@@ -65,9 +66,26 @@
             <groupId>com.google.code.gson</groupId>
             <artifactId>gson</artifactId>
         </dependency>
+        <dependency>
+            <groupId>commons-codec</groupId>
+            <artifactId>commons-codec</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+        </dependency>
 
 
     </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+
 
 
 </project>

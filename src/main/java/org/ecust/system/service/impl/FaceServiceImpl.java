@@ -88,7 +88,7 @@ public class FaceServiceImpl implements FaceService {
             studentLambdaQueryWrapper.eq(User::getUserNumber,userNumber);
             User user = userMapper.selectOne(studentLambdaQueryWrapper);
             if(user ==null) return false;
-            String photo_url = user.getPhoto_url();
+            String photo_url = user.getPhotoUrl();
             FileInputStream fin = new FileInputStream(new File(photo_url));
             //可能溢出,简单起见就不考虑太多,如果太大就要另外想办法，比如一次传入固定长度byte[]
             byte[] bytes2  = new byte[fin.available()];

@@ -6,3 +6,7 @@ spring:
     url: jdbc:mysql://120.48.53.106:3306/ecust?useUnicode=true&characterEncoding=UTF-8&serverTimeZone=UTC
     username: ecust
     password: ecust
+mybatis-plus:
+  global-config:
+    db-config:
+      id-type: auto
