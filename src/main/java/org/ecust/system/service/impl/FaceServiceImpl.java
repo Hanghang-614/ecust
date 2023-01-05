@@ -1,6 +1,9 @@
 package org.ecust.system.service.impl;
 
 import com.alibaba.fastjson.JSON;
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import org.ecust.system.mapper.UserMapper;
+import org.ecust.system.pojo.entity.User;
 import org.ecust.system.pojo.param.BaiduResult;
 import org.ecust.system.pojo.param.PhotoParam;
 import org.ecust.system.service.AuthService;
@@ -8,13 +11,19 @@ import org.ecust.system.service.FaceService;
 import org.ecust.system.utils.Base64Util;
 import org.ecust.system.utils.GsonUtils;
 import org.ecust.system.utils.HttpUtil;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@Service
 public class FaceServiceImpl implements FaceService {
-    public static String faceMatch() {
+    @Autowired
+    UserMapper userMapper;
+    public String faceMatch() {
         // 请求url
         String url = "https://aip.baidubce.com/rest/2.0/face/v3/match";
         try {
@@ -59,5 +68,49 @@ public class FaceServiceImpl implements FaceService {
             e.printStackTrace();
         }
         return null;
+    }
+
+    @Override
+    public Boolean comparePhoto(MultipartFile file, Long userNumber) {
+        try {
+            String url = "https://aip.baidubce.com/rest/2.0/face/v3/match";
+            List<PhotoParam> photoParams = new ArrayList<>();
+
+            //上传的照片
+            byte[] bytes1 = file.getBytes();
+            PhotoParam photoParam1 = new PhotoParam();
+            photoParam1.setImage(Base64Util.encode(bytes1));
+            photoParams.add(photoParam1);
+
+
+            //原照片
+            LambdaQueryWrapper<User> studentLambdaQueryWrapper = new LambdaQueryWrapper<>();
+            studentLambdaQueryWrapper.eq(User::getUserNumber,userNumber);
+            User user = userMapper.selectOne(studentLambdaQueryWrapper);
+            if(user ==null) return false;
+            String photo_url = user.getPhoto_url();
+            FileInputStream fin = new FileInputStream(new File(photo_url));
+            //可能溢出,简单起见就不考虑太多,如果太大就要另外想办法，比如一次传入固定长度byte[]
+            byte[] bytes2  = new byte[fin.available()];
+            //将文件内容写入字节数组，提供测试的case
+            fin.read(bytes2);
+            fin.close();
+            PhotoParam photoParam2 = new PhotoParam();
+            photoParam2.setImage(Base64Util.encode(bytes2));
+            photoParams.add(photoParam2);
+
+            String param = GsonUtils.toJson(photoParams);
+            String accessToken = AuthService.getAuth();
+            String result = HttpUtil.post(url, accessToken, "application/json", param);
+            BaiduResult baiduResult = JSON.parseObject(result, BaiduResult.class);
+            float score = baiduResult.getResult().getScore();
+            if(score>50){
+                return true;
+            }return false;
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }finally {
+            return false;
+        }
     }
 }
