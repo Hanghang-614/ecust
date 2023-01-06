@@ -17,36 +17,36 @@ public class CourseController {
     private CourseService courseService;
 
     @PostMapping("getAllCourse")
-    @ApiOperation(value ="分页查询课程信息")
-    public Result getAllCourse(@RequestBody PageParam pageParam){
-        List<CourseVo> list=courseService.getAllCourse(pageParam);
+    @ApiOperation(value ="分页查询课程信息或者根据id查询具体某一个课程信息")
+    public Result getAllCourseOrById(@RequestBody PageParam pageParam){
+        List<CourseVo> list=courseService.getAllCourseOrById(pageParam);
         return Result.success(list);
     }
 
-    @PostMapping("findAll")
-    @ApiOperation(value="查询课程信息")
-    public List<CourseVo> findAll()
-    {
-        return courseService.findAll();
-    }
-    @PostMapping("findByName")
-    @ApiOperation(value="根据id查询课程信息")
-    public List<CourseVo> findById(Long id)
-    {
-        return courseService.findById(id);
-    }
-    @PostMapping("search")
-    @ApiOperation(value="根据课程名称模糊查询课程信息")
-    public List<CourseVo> search(String name)
-    {
-        return courseService.search(name);
-    }
-    @PostMapping("findTerm")
-    @ApiOperation(value="根据开课学期查询课程信息")
-    public List<CourseVo> findTerm(Long term)
-    {
-        return courseService.findTerm(term);
-    }
+//    @PostMapping("findAll")
+//    @ApiOperation(value="查询课程信息")
+//    public List<CourseVo> findAll()
+//    {
+//        return courseService.findAll();
+//    }
+//    @PostMapping("findById")
+//    @ApiOperation(value="根据id查询课程信息")
+//    public List<CourseVo> findById(Long id)
+//    {
+//        return courseService.findById(id);
+//    }
+//    @PostMapping("search")
+//    @ApiOperation(value="根据课程名称模糊查询课程信息")
+//    public List<CourseVo> search(String name)
+//    {
+//        return courseService.search(name);
+//    }
+//    @PostMapping("findTerm")
+//    @ApiOperation(value="根据开课学期查询课程信息")
+//    public List<CourseVo> findTerm(Long term)
+//    {
+//        return courseService.findTerm(term);
+//    }
     @PostMapping("addCourse")
     @ApiOperation(value="新增课程信息")
     public void addCourse(@RequestBody Course course)

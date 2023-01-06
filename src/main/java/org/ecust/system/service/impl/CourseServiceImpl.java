@@ -20,12 +20,18 @@ public class CourseServiceImpl implements CourseService {
     CourseMapper courseMapper;
 
   @Override
-  public List<CourseVo> getAllCourse(PageParam pageParam) {
-     Page<Course> page=new Page<>(pageParam.getPage(),pageParam.getPageSize());
-     Page<Course> coursePage=courseMapper.selectPage(page,new LambdaQueryWrapper<>());
-     List<Course> records=coursePage.getRecords();
-     List<CourseVo> courseVos=transform(records);
-     return courseVos;
+  public List<CourseVo> getAllCourseOrById(PageParam pageParam) {
+      if(pageParam.getId()!=0)
+      {
+          return courseMapper.findById(pageParam.getId());
+      }
+      else {
+          Page<Course> page = new Page<>(pageParam.getPage(), pageParam.getPageSize());
+          Page<Course> coursePage = courseMapper.selectPage(page, new LambdaQueryWrapper<>());
+          List<Course> records = coursePage.getRecords();
+          List<CourseVo> courseVos = transform(records);
+          return courseVos;
+      }
   }
   private List<CourseVo> transform(List<Course> records)
   {
