@@ -100,6 +100,12 @@ public class UserServiceImpl implements UserService {
         return Result.success("删除成功");
     }
 
+    @Override
+    public Result getUserById(Long userId) {
+        User user = userMapper.selectById(userId);
+        return Result.success(user);
+    }
+
     private List<UserVo> transform(List<User> records) {
         List<UserVo> userVos = new ArrayList<>();
         for(User user : records){

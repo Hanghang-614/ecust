@@ -42,6 +42,11 @@ public class UserController {
     public Result getAllStudentOrTeacher(@RequestBody UserPageParam pageParam){
         return userService.getAllStudentOrTeacher(pageParam);
     }
+    @GetMapping("getUserById")
+    @ApiOperation("根据Id查询用户")
+    public Result getUserById(@RequestParam("userId") Long userId){
+        return userService.getUserById(userId);
+    }
 
     @PostMapping("updateUser")
     @ApiOperation("更新用户基本信息")
