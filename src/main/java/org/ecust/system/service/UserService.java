@@ -14,4 +14,6 @@ public interface UserService {
     Result updateUser(UpdateUserParam updateUserParam);
 
     Result deleteUser(Long userId);
+
+    Result getUserById(Long userId);
 }
