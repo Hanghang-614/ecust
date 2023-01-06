@@ -11,6 +11,7 @@ import org.ecust.system.service.FaceService;
 import org.ecust.system.utils.Base64Util;
 import org.ecust.system.utils.GsonUtils;
 import org.ecust.system.utils.HttpUtil;
+import org.ecust.system.utils.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -71,7 +72,7 @@ public class FaceServiceImpl implements FaceService {
     }
 
     @Override
-    public Boolean comparePhoto(MultipartFile file, Long userNumber) {
+    public Result comparePhoto(MultipartFile file, Long userNumber) {
         try {
             String url = "https://aip.baidubce.com/rest/2.0/face/v3/match";
             List<PhotoParam> photoParams = new ArrayList<>();
@@ -87,7 +88,7 @@ public class FaceServiceImpl implements FaceService {
             LambdaQueryWrapper<User> studentLambdaQueryWrapper = new LambdaQueryWrapper<>();
             studentLambdaQueryWrapper.eq(User::getUserNumber,userNumber);
             User user = userMapper.selectOne(studentLambdaQueryWrapper);
-            if(user ==null) return false;
+            if(user ==null) return Result.fail(666,"验证失败");;
             String photo_url = user.getPhotoUrl();
             FileInputStream fin = new FileInputStream(new File(photo_url));
             //可能溢出,简单起见就不考虑太多,如果太大就要另外想办法，比如一次传入固定长度byte[]
@@ -105,12 +106,12 @@ public class FaceServiceImpl implements FaceService {
             BaiduResult baiduResult = JSON.parseObject(result, BaiduResult.class);
             float score = baiduResult.getResult().getScore();
             if(score>50){
-                return true;
-            }return false;
+                return Result.success("验证成功");
+            }return Result.fail(666,"验证失败");
         } catch (IOException e) {
             throw new RuntimeException(e);
         }finally {
-            return false;
+            return Result.fail(666,"验证失败");
         }
     }
 }

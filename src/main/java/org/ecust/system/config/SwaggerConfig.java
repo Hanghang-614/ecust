@@ -27,7 +27,7 @@ public class SwaggerConfig {
 
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title("系统服务API")
+                .title("软件文档写作考勤系统API")
                 .description("接口文档说明")
                 .version("1.0.0")
                 .build();

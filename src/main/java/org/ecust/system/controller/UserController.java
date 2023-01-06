@@ -1,8 +1,7 @@
 package org.ecust.system.controller;
 
 import io.swagger.annotations.ApiOperation;
-import org.ecust.system.pojo.param.LoginParam;
-import org.ecust.system.pojo.param.RegisterParam;
+import org.ecust.system.pojo.param.*;
 import org.ecust.system.service.UserService;
 import org.ecust.system.utils.Result;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,4 +37,22 @@ public class UserController {
         registerParam.setRoleId(roleId);
         return userService.register(file,registerParam);
     }
+    @PostMapping("getAllStudentOrTeacher")
+    @ApiOperation("分页查询学生或者老师 roleId=0查询所有人")
+    public Result getAllStudentOrTeacher(@RequestBody UserPageParam pageParam){
+        return userService.getAllStudentOrTeacher(pageParam);
+    }
+
+    @PostMapping("updateUser")
+    @ApiOperation("更新用户基本信息")
+    public Result updateUser(@RequestBody UpdateUserParam updateUserParam){
+        return userService.updateUser(updateUserParam);
+    }
+
+    @GetMapping("deleteUser")
+    @ApiOperation("删除用户")
+    public Result deleteUser(@RequestParam("userId") Long userId){
+        return userService.deleteUser(userId);
+    }
+
 }
