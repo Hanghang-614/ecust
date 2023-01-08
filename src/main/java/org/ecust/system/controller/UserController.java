@@ -60,4 +60,16 @@ public class UserController {
         return userService.deleteUser(userId);
     }
 
+    @PostMapping("addUser")
+    @ApiOperation("添加用户")
+    public Result addUser(@RequestBody RegisterParam registerParam){
+        return userService.addUser(registerParam);
+    }
+
+    @PostMapping("upLoadPhoto")
+    @ApiOperation("添加用户照片")
+    public Result addUser(@RequestParam MultipartFile file,@RequestParam Long userId){
+        return userService.upLoadPhoto(file,userId);
+    }
+
 }

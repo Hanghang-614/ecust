@@ -16,4 +16,8 @@ public interface UserService {
     Result deleteUser(Long userId);
 
     Result getUserById(Long userId);
+
+    Result addUser(RegisterParam registerParam);
+
+    Result upLoadPhoto(MultipartFile file,Long userId);
 }

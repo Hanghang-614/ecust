@@ -106,6 +106,34 @@ public class UserServiceImpl implements UserService {
         return Result.success(user);
     }
 
+    @Override
+    public Result addUser(RegisterParam registerParam) {
+        User user = new User();
+        BeanUtils.copyProperties(registerParam,user);
+        user.setPhotoUrl("src/main/resources/static/photo/" + "default.jpg");
+        userMapper.insert(user);
+        return Result.success("添加成功");
+    }
+
+    @Override
+    public Result upLoadPhoto(MultipartFile file,Long userId) {
+        User user = new User();
+        String originalFilename = file.getOriginalFilename();
+        String fileName = userId + "." + StringUtils.substringAfterLast(originalFilename, ".");
+        String filePath = "src/main/resources/static/photo/"+fileName;
+        user.setPhotoUrl(filePath);
+        userMapper.update(user,new LambdaQueryWrapper<User>().eq(User::getUserNumber,userId));
+        try {
+            byte[] content = file.getBytes();
+            FileOutputStream fileOutputStream = new FileOutputStream(filePath);
+            fileOutputStream.write(content);
+            fileOutputStream.close();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        return Result.success("添加照片成功");
+    }
+
     private List<UserVo> transform(List<User> records) {
         List<UserVo> userVos = new ArrayList<>();
         for(User user : records){
