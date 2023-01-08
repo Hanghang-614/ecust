@@ -134,6 +134,16 @@ public class UserServiceImpl implements UserService {
         return Result.success("添加照片成功");
     }
 
+    @Override
+    public Result getUserByUserNumber(Long userNumber) {
+        LambdaQueryWrapper<User> userLambdaQueryWrapper = new LambdaQueryWrapper<>();
+        userLambdaQueryWrapper.eq(User::getUserNumber,userNumber);
+        User user = userMapper.selectOne(userLambdaQueryWrapper);
+        UserVo userVo = new UserVo();
+        BeanUtils.copyProperties(user,userVo);
+        return Result.success(userVo);
+    }
+
     private List<UserVo> transform(List<User> records) {
         List<UserVo> userVos = new ArrayList<>();
         for(User user : records){

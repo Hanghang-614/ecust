@@ -20,4 +20,6 @@ public interface UserService {
     Result addUser(RegisterParam registerParam);
 
     Result upLoadPhoto(MultipartFile file,Long userId);
+
+    Result getUserByUserNumber(Long userNumber);
 }

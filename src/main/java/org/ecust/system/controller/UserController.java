@@ -72,4 +72,10 @@ public class UserController {
         return userService.upLoadPhoto(file,userId);
     }
 
+    @GetMapping("getUserByUserNumber")
+    @ApiOperation("根据userNumber查询user")
+    public Result getUserByUserNumber(@RequestParam("userNumber") Long userNumber){
+        return userService.getUserByUserNumber(userNumber);
+    }
+
 }
