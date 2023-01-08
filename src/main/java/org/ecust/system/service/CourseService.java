@@ -15,4 +15,5 @@ public interface CourseService {
     void del(Long id);
     void delAll(Long[] ids);
     void updateCourse(Course course);
+    List<CourseVo> findCourseByUserNumber(Long userNumber);
 }
