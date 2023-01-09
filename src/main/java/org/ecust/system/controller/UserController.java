@@ -19,24 +19,24 @@ public class UserController {
     public Result login(@RequestBody LoginParam loginParam){
         return userService.login(loginParam);
     }
-    @PostMapping("register")
-    @ApiOperation("注册,需要上传自己的一张照片")
-    public Result register(@RequestParam("image") MultipartFile file,
-                           @RequestParam("userNumber") Long userNumber,
-                           @RequestParam("name") String name,
-                           @RequestParam("password")String password,
-                           @RequestParam("classId")Long classId,
-                           @RequestParam("sex") String sex,
-                           @RequestParam("roleId")Long roleId){
-        RegisterParam registerParam = new RegisterParam();
-        registerParam.setSex(sex);
-        registerParam.setName(name);
-        registerParam.setUserNumber(userNumber);
-        registerParam.setPassword(password);
-        registerParam.setClassId(classId);
-        registerParam.setRoleId(roleId);
-        return userService.register(file,registerParam);
-    }
+//    @PostMapping("register")
+//    @ApiOperation("注册,需要上传自己的一张照片")
+//    public Result register(@RequestParam("image") MultipartFile file,
+//                           @RequestParam("userNumber") Long userNumber,
+//                           @RequestParam("name") String name,
+//                           @RequestParam("password")String password,
+//                           @RequestParam("classId")Long classId,
+//                           @RequestParam("sex") String sex,
+//                           @RequestParam("roleId")Long roleId){
+//        RegisterParam registerParam = new RegisterParam();
+//        registerParam.setSex(sex);
+//        registerParam.setName(name);
+//        registerParam.setUserNumber(userNumber);
+//        registerParam.setPassword(password);
+//        registerParam.setClassId(classId);
+//        registerParam.setRoleId(roleId);
+//        return userService.register(file,registerParam);
+//    }
     @PostMapping("getAllStudentOrTeacher")
     @ApiOperation("分页查询学生或者老师 roleId=0查询所有人")
     public Result getAllStudentOrTeacher(@RequestBody UserPageParam pageParam){
@@ -66,11 +66,11 @@ public class UserController {
         return userService.addUser(registerParam);
     }
 
-    @PostMapping("upLoadPhoto")
-    @ApiOperation("添加用户照片")
-    public Result addUser(@RequestParam MultipartFile file,@RequestParam Long userId){
-        return userService.upLoadPhoto(file,userId);
-    }
+//    @PostMapping("upLoadPhoto")
+//    @ApiOperation("添加用户照片")
+//    public Result addUser(@RequestParam MultipartFile file,@RequestParam Long userId){
+//        return userService.upLoadPhoto(file,userId);
+//    }
 
     @GetMapping("getUserByUserNumber")
     @ApiOperation("根据userNumber查询user")

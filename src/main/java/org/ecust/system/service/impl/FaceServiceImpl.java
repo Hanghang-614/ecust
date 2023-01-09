@@ -90,15 +90,19 @@ public class FaceServiceImpl implements FaceService {
             User user = userMapper.selectOne(studentLambdaQueryWrapper);
             if(user ==null) return Result.fail(666,"验证失败");;
             String photo_url = user.getPhotoUrl();
-            FileInputStream fin = new FileInputStream(new File(photo_url));
-            //可能溢出,简单起见就不考虑太多,如果太大就要另外想办法，比如一次传入固定长度byte[]
-            byte[] bytes2  = new byte[fin.available()];
-            //将文件内容写入字节数组，提供测试的case
-            fin.read(bytes2);
-            fin.close();
             PhotoParam photoParam2 = new PhotoParam();
-            photoParam2.setImage(Base64Util.encode(bytes2));
+            photoParam2.setImage(photo_url);
+            photoParam2.setImage_type("URL");
             photoParams.add(photoParam2);
+//            FileInputStream fin = new FileInputStream(new File(photo_url));
+//            //可能溢出,简单起见就不考虑太多,如果太大就要另外想办法，比如一次传入固定长度byte[]
+//            byte[] bytes2  = new byte[fin.available()];
+//            //将文件内容写入字节数组，提供测试的case
+//            fin.read(bytes2);
+//            fin.close();
+//            PhotoParam photoParam2 = new PhotoParam();
+//            photoParam2.setImage(Base64Util.encode(bytes2));
+//            photoParams.add(photoParam2);
 
             String param = GsonUtils.toJson(photoParams);
             String accessToken = AuthService.getAuth();
@@ -108,10 +112,8 @@ public class FaceServiceImpl implements FaceService {
             if(score>50){
                 return Result.success("验证成功");
             }return Result.fail(666,"验证失败");
-        } catch (IOException e) {
+        } catch (Exception e) {
             throw new RuntimeException(e);
-        }finally {
-            return Result.fail(666,"验证失败");
         }
     }
 }
