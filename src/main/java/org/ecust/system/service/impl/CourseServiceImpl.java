@@ -86,4 +86,9 @@ public class CourseServiceImpl implements CourseService {
   {
     courseMapper.updateCourse(course);
   }
+  @Override
+  public List<CourseVo> findCourseByUserNumber(Long userNumber)
+  {
+      return courseMapper.findCourseByUserNumber(userNumber);
+  }
 }

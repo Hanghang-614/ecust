@@ -29,4 +29,7 @@ public interface CourseMapper extends BaseMapper<Course> {
 
     @Update("update course set courseNo=#{courseNo},name=#{name},credit=#{credit},term=#{term},teacherName=#{teacherName} where id=#{id}")
     void updateCourse(Course course);
+
+    @Select("select * from course where id in(select course_id from user_course where user_id in(select id from user where user_number=#{userNumber}))")
+    List<CourseVo> findCourseByUserNumber(Long userNumber);
 }

@@ -71,4 +71,10 @@ public class CourseController {
     {
         courseService.updateCourse(course);
     }
+    @PostMapping("findCourseByUserNumber")
+    @ApiOperation(value="通过UserNumber拿到学生所选的课程信息(组长叫俺加的)")
+    public List<CourseVo> findCourseByUserNumber(Long userNumber)
+    {
+        return courseService.findCourseByUserNumber(userNumber);
+    }
 }
