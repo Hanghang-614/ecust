@@ -5,6 +5,7 @@ import org.ecust.system.pojo.entity.Function;
 import org.ecust.system.pojo.entity.Role;
 import org.ecust.system.pojo.entity.RoleFunction;
 import org.ecust.system.service.RoleService;
+import org.ecust.system.utils.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -19,15 +20,17 @@ public class RoleController {
     RoleService roleService;
  @PostMapping("findAllFunction")
  @ApiOperation(value="根据parentId查询所有的权限功能")
-    public List<Function> findAllFunction(Long parentId)
+    public Result findAllFunction(Long parentId)
  {
-     return  roleService.findAllFunction(parentId);
+     List<Function> list=roleService.findAllFunction(parentId);
+     return Result.success(list);
  }
  @PostMapping("findAllRoleFunction")
  @ApiOperation(value="查询指定角色所有的权限功能")
-    public List<Function> findAllRoleFunction(Long roleId)
+    public Result findAllRoleFunction(Long roleId)
  {
-     return roleService.findAllRoleFunction(roleId);
+     List<Function> list=roleService.findAllRoleFunction(roleId);
+     return Result.success(list);
  }
  @PostMapping("deleteRoleFunction")
  @ApiOperation(value="删除某个角色权限功能")

@@ -73,8 +73,9 @@ public class CourseController {
     }
     @PostMapping("findCourseByUserNumber")
     @ApiOperation(value="通过UserNumber拿到学生所选的课程信息(组长叫俺加的)")
-    public List<CourseVo> findCourseByUserNumber(Long userNumber)
+    public Result findCourseByUserNumber(Long userNumber)
     {
-        return courseService.findCourseByUserNumber(userNumber);
+        List<CourseVo> list=courseService.findCourseByUserNumber(userNumber);
+        return Result.success(list);
     }
 }
