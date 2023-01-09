@@ -18,4 +18,6 @@ public interface FunctionMapper extends BaseMapper<Function> {
     void deleteRoleFunction(RoleFunction roleFunction);
     @Insert("insert into role_function values(#{id},#{roleId},#{functionId})")
     void insertRoleFunction(RoleFunction roleFunction);
+    @Delete("delete from role_function where role_id=#{roleId}")
+    void deleteRoleFunctionByRoleId(Long roleId);
 }
