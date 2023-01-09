@@ -20,4 +20,10 @@ public class FaceController {
     public Result judgeFace(@RequestParam("image") MultipartFile file,@RequestParam("userNumber") Long userNumber){
         return faceService.comparePhoto(file,userNumber);
     }
+
+    @PostMapping("judge2")
+    @ApiOperation("人脸对比接口2，需要Base64编码和当前登录用户的学号")
+    public Result judgeFace(@RequestParam("image") String image,@RequestParam("userNumber") Long userNumber){
+        return faceService.comparePhoto2(image,userNumber);
+    }
 }
