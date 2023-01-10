@@ -15,7 +15,7 @@ public class UserController {
     UserService userService;
 
     @PostMapping("login")
-    @ApiOperation("登录接口，返回值没想好")
+    @ApiOperation("登录接口，返回User基本信息")
     public Result login(@RequestBody LoginParam loginParam){
         return userService.login(loginParam);
     }

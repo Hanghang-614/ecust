@@ -43,7 +43,12 @@ public class UserServiceImpl implements UserService {
         if(user==null){
             return Result.fail(666,"用户不存在或者密码错误");
         }
-        return Result.success("登陆成功");
+        Long roleId = user.getRoleId();
+        Role role = roleMapper.selectById(roleId);
+        UserVo userVo = new UserVo();
+        BeanUtils.copyProperties(user,userVo);
+        userVo.setRoleName(role.getRoleName());
+        return Result.success(userVo);
     }
 
     @Override
