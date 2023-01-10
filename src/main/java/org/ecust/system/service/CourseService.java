@@ -6,9 +6,9 @@ import org.ecust.system.pojo.vo.CourseVo;
 import java.util.List;
 
 public interface CourseService {
-    List<CourseVo> getAllCourseOrById(PageParam param);
+    List<Course> getAllCourseOrById(PageParam param);
     List<CourseVo> findAll();
-    List<CourseVo> findById(Long id);
+    List<Course> findById(Long id);
     List<CourseVo> search(String name);
     List<CourseVo> findTerm(Long term);
     void addCourse(Course course);

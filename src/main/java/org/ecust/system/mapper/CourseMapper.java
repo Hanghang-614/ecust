@@ -14,7 +14,7 @@ public interface CourseMapper extends BaseMapper<Course> {
     List<CourseVo> findAll();
 
     @Select("select * from course where id=#{id}")
-    List<CourseVo> findById(Long id);
+    List<Course> findById(Long id);
     @Select("select * from course where name like concat('%',#{name},'%')")
     List<CourseVo> search(String name);
 

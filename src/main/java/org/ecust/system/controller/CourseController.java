@@ -19,7 +19,7 @@ public class CourseController {
     @PostMapping("getAllCourse")
     @ApiOperation(value ="分页查询课程信息或者根据id查询具体某一个课程信息")
     public Result getAllCourseOrById(@RequestBody PageParam pageParam){
-        List<CourseVo> list=courseService.getAllCourseOrById(pageParam);
+        List<Course> list=courseService.getAllCourseOrById(pageParam);
         return Result.success(list);
     }
 
