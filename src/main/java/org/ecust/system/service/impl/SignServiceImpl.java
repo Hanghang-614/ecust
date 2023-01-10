@@ -19,6 +19,11 @@ public class SignServiceImpl implements SignService {
     public Result addSign(AddSignParam addSignParam) {
         Sign sign = new Sign();
         BeanUtils.copyProperties(addSignParam,sign);
+        if(addSignParam.getIsCheck()){
+            sign.setIsCheck(1);
+        }else{
+            sign.setIsCheck(0);
+        }
         sign.setTime(new Date());
         signMapper.insert(sign);
         return Result.success("签到成功");

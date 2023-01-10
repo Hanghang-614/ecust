@@ -12,6 +12,6 @@ public class Sign {
     private Long courseNo;
     private Long userNumber;
     @TableField("isCheck")
-    private Boolean isCheck;
+    private int isCheck; // 0-签到失败 1-签到成功
     private Date time;
 }
