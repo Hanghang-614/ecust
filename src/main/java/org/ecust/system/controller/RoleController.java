@@ -46,9 +46,10 @@ public class RoleController {
     }
     @PostMapping("findAllRole")
     @ApiOperation("查询所有角色")
-    public List<Role> findAllRole()
+    public Result findAllRole()
     {
-        return roleService.findAllRole();
+        List<Role> list=roleService.findAllRole();
+        return Result.success(list);
     }
     @PostMapping("deleteRole")
     @ApiOperation("删除角色同时删除角色对应的所有权限功能")
