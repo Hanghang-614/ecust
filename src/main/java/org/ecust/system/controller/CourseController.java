@@ -78,4 +78,10 @@ public class CourseController {
         List<CourseVo> list=courseService.findCourseByUserNumber(userNumber);
         return Result.success(list);
     }
+//    @PostMapping("findCourseNo")
+//    @ApiOperation("根据课程编号查询课程信息")
+//    public Long findCourseNo(Long courseNo)
+//    {
+//        return courseService.findCourseNo(courseNo);
+//    }
 }

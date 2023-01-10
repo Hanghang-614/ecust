@@ -32,4 +32,7 @@ public interface CourseMapper extends BaseMapper<Course> {
 
     @Select("select * from course where id in(select course_id from user_course where user_id in(select id from user where user_number=#{userNumber}))")
     List<CourseVo> findCourseByUserNumber(Long userNumber);
+
+    @Select("select courseNo from course where courseNo=#{courseNo}")
+    Long findCourseNo(Long courseNo);
 }

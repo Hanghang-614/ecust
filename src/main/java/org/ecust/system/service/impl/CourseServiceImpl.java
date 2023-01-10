@@ -92,4 +92,9 @@ public class CourseServiceImpl implements CourseService {
     {
         return courseMapper.findCourseByUserNumber(userNumber);
     }
+    @Override
+    public Long findCourseNo(Long courseNo)
+    {
+        return courseMapper.findCourseNo(courseNo);
+    }
 }
