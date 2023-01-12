@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 import org.ecust.system.pojo.entity.Activity;
 import org.ecust.system.pojo.entity.User;
+import org.ecust.system.pojo.param.ActivityParam;
 
 import java.util.Date;
 import java.util.List;
@@ -22,7 +23,7 @@ public interface ActivityMapper extends BaseMapper<Activity> {
     @Select("select * from activity where id=#{id}")
     List<Activity> findActivityById(Long id);
     @Insert("insert into activity values(#{id},#{beginTime},#{endTime},#{courseNo})")
-    void addActivity(Activity activity);
+    void addActivity(ActivityParam activityParam);
     @Delete("delete from activity where id=#{id}")
     void deleteActivity(Long id);
     @Update("update activity set end_time=now() where id=#{id}")

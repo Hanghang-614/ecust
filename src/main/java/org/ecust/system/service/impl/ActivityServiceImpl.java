@@ -4,6 +4,7 @@ import org.ecust.system.mapper.ActivityMapper;
 import org.ecust.system.mapper.CourseMapper;
 import org.ecust.system.pojo.entity.Activity;
 import org.ecust.system.pojo.entity.User;
+import org.ecust.system.pojo.param.ActivityParam;
 import org.ecust.system.pojo.vo.CourseVo;
 import org.ecust.system.service.ActivityService;
 import org.ecust.system.utils.Result;
@@ -40,15 +41,15 @@ public class ActivityServiceImpl implements ActivityService {
         return activityMapper.findActivityById(id);
     }
     @Override
-    public Result addActivity(Activity activity)
+    public Result addActivity(ActivityParam activityParam)
     {
-        Long courseNo=courseMapper.findCourseNo(activity.getCourseNo());
+        Long courseNo=courseMapper.findCourseNo(activityParam.getCourseNo());
         if(courseNo==0)
         {
             return Result.fail(666,"不存在这个课程，发布考勤失败");
         }
         else{
-            activityMapper.addActivity(activity);
+            activityMapper.addActivity(activityParam);
             return Result.success("发布考勤成功");
         }
 

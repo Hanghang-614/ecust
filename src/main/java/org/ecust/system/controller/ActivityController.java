@@ -2,6 +2,7 @@ package org.ecust.system.controller;
 
 import io.swagger.annotations.ApiOperation;
 import org.ecust.system.pojo.entity.Activity;
+import org.ecust.system.pojo.param.ActivityParam;
 import org.ecust.system.service.ActivityService;
 import org.ecust.system.utils.Result;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,9 +26,9 @@ public class ActivityController {
     }
    @PostMapping("addActivity")
    @ApiOperation("发布考勤（向activity表中添加记录)")
-   public Result addActivity(@RequestBody Activity activity)
+   public Result addActivity(@RequestBody ActivityParam activityParam)
    {
-       return activityService.addActivity(activity);
+       return activityService.addActivity(activityParam);
    }
    @PostMapping("deleteActivity")
    @ApiOperation("删除考勤活动")
