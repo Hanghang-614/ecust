@@ -4,6 +4,7 @@ import io.swagger.annotations.ApiOperation;
 import org.ecust.system.pojo.entity.Function;
 import org.ecust.system.pojo.entity.Role;
 import org.ecust.system.pojo.entity.RoleFunction;
+import org.ecust.system.pojo.param.FunctionParam;
 import org.ecust.system.service.RoleService;
 import org.ecust.system.utils.Result;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +30,7 @@ public class RoleController {
  @ApiOperation(value="查询指定角色所有的权限功能")
     public Result findAllRoleFunction(Long roleId)
  {
-     List<Function> list=roleService.findAllRoleFunction(roleId);
+     List<FunctionParam> list=roleService.findAllRoleFunction(roleId);
      return Result.success(list);
  }
  @PostMapping("deleteRoleFunction")

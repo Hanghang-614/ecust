@@ -5,6 +5,7 @@ import org.ecust.system.mapper.RoleMapper;
 import org.ecust.system.pojo.entity.Function;
 import org.ecust.system.pojo.entity.Role;
 import org.ecust.system.pojo.entity.RoleFunction;
+import org.ecust.system.pojo.param.FunctionParam;
 import org.ecust.system.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,7 +23,7 @@ public class RoleServiceImpl implements RoleService{
       return functionMapper.findAllFunction(parentId);
     }
     @Override
-    public List<Function> findAllRoleFunction(Long roleId)
+    public List<FunctionParam> findAllRoleFunction(Long roleId)
     {
         return functionMapper.findAllRoleFunction(roleId);
     }
