@@ -5,6 +5,7 @@ import org.ecust.system.pojo.entity.Function;
 import org.ecust.system.pojo.entity.Role;
 import org.ecust.system.pojo.entity.RoleFunction;
 import org.ecust.system.pojo.param.FunctionParam;
+import org.ecust.system.pojo.param.RoleFunctionParam;
 import org.ecust.system.service.RoleService;
 import org.ecust.system.utils.Result;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,15 +36,15 @@ public class RoleController {
  }
  @PostMapping("deleteRoleFunction")
  @ApiOperation(value="删除某个角色权限功能")
- public void deleteRoleFunction(@RequestBody RoleFunction roleFunction)
+ public Result deleteRoleFunction(@RequestBody RoleFunctionParam roleFunctionParam)
  {
-     roleService.deleteRoleFunction(roleFunction);
+     return roleService.deleteRoleFunction(roleFunctionParam);
  }
     @PostMapping("insertRoleFunction")
     @ApiOperation(value="新增某个角色权限功能")
-    public void insertRoleFunction(@RequestBody RoleFunction roleFunction)
+    public Result insertRoleFunction(@RequestBody RoleFunctionParam roleFunctionParam)
     {
-        roleService.insertRoleFunction(roleFunction);
+        return roleService.insertRoleFunction(roleFunctionParam);
     }
     @PostMapping("findAllRole")
     @ApiOperation("查询所有角色")
