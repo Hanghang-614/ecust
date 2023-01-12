@@ -30,4 +30,6 @@ public interface ActivityMapper extends BaseMapper<Activity> {
     void endActivity(Long id);
     @Select("select * from user where user_number in(select user_number from sign where isCheck=1 and time>(select begin_time from activity where id=#{id}) and time<(select end_time from activity where id=#{id}))")
     List<User> selectWhoJoin(Long id);
+    @Select("select * from activity")
+    List<Activity> selectAllActivity();
 }

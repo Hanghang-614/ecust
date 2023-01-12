@@ -48,4 +48,11 @@ public class ActivityController {
    {
        return activityService.selectWhoJoin(id);
    }
+   @PostMapping("selectAllActivity")
+   @ApiOperation("查询所有考勤活动")
+   public Result selectAllActivity()
+   {
+       List<Activity> list=activityService.selectAllActivity();
+       return Result.success(list);
+   }
 }

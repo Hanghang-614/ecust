@@ -86,4 +86,9 @@ public class ActivityServiceImpl implements ActivityService {
         List<User> list=activityMapper.selectWhoJoin(id);
         return Result.success(list);
     }
+    @Override
+    public List<Activity> selectAllActivity()
+    {
+        return activityMapper.selectAllActivity();
+    }
 }

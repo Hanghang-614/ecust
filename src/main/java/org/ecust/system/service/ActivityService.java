@@ -16,4 +16,5 @@ public interface ActivityService {
     Result deleteActivity(Long id);
     Result endActivity(Long id);
     Result selectWhoJoin(Long id);
+    List<Activity> selectAllActivity();
 }
