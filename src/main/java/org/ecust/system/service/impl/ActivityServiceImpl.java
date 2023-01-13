@@ -44,7 +44,7 @@ public class ActivityServiceImpl implements ActivityService {
     public Result addActivity(ActivityParam activityParam)
     {
         Long courseNo=courseMapper.findCourseNo(activityParam.getCourseNo());
-        if(courseNo==0)
+        if(courseNo==null)
         {
             return Result.fail(666,"不存在这个课程，发布考勤失败");
         }
@@ -57,12 +57,14 @@ public class ActivityServiceImpl implements ActivityService {
     @Override
     public Result deleteActivity(Long id)
     {
-        activityMapper.deleteActivity(id);
         Long idd=activityMapper.findId(id);
-        if(idd!=0)
-        return Result.success("删除考勤成功");
+        if(idd!=null)
+        {
+            activityMapper.deleteActivity(id);
+            return Result.success("删除考勤成功");
+        }
         else
-            return Result.fail(666,"删除考勤失败");
+            return Result.fail(666,"删除考勤失败，不存在这样的考勤活动");
     }
     @Override
     public Result endActivity(Long id)
