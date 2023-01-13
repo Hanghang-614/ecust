@@ -28,7 +28,7 @@ public interface ActivityMapper extends BaseMapper<Activity> {
     void deleteActivity(Long id);
     @Update("update activity set end_time=now() where id=#{id}")
     void endActivity(Long id);
-    @Select("select * from user where user_number in(select user_number from sign where isCheck=1 and course_no=(select course_no from activity where id=#{id}) and time>(select begin_time from activity where id=#{id}) and time<(select end_time from activity where id=#{id}) and)")
+    @Select("select * from user where user_number in(select user_number from sign where isCheck=1 and course_no=(select course_no from activity where id=#{id}) and time>(select begin_time from activity where id=#{id}) and time<(select end_time from activity where id=#{id}))")
     List<User> selectWhoJoin(Long id);
     @Select("select * from activity")
     List<Activity> selectAllActivity();
