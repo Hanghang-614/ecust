@@ -4,12 +4,14 @@ import lombok.Data;
 
 @Data
 public class User {
-    private Long id;
-    private Long userNumber;
-    private String name;
-    private String password;
-    private Long classId;
+    private Long userId;
+    private String studentId;
     private String sex;
-    private String photoUrl;
+    private String name;
+    private String phone;
+    private String email;
+    private String identificationId;
+    private String birthday;
+    private String password;
     private Long roleId;
 }

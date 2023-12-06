@@ -1,38 +1,29 @@
 package org.ecust.system.mapper;
 
-import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import org.apache.ibatis.annotations.Delete;
+
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 import org.ecust.system.pojo.entity.Course;
-import org.ecust.system.pojo.vo.CourseVo;
+import org.ecust.system.pojo.entity.UserCourse;
+import org.ecust.system.pojo.vo.ScoreVo;
+
 import java.util.List;
 
-public interface CourseMapper extends BaseMapper<Course> {
+public interface CourseMapper {
+    //学生查看课程
     @Select("select * from course")
-    List<CourseVo> findAll();
-
-    @Select("select * from course where id=#{id}")
-    List<Course> findById(Long id);
-    @Select("select * from course where name like concat('%',#{name},'%')")
-    List<CourseVo> search(String name);
-
-    @Select("select * from course where term=#{term}")
-    List<CourseVo> findTerm(Long term);
-
-    @Insert("insert into course values(#{id},#{courseNo},#{name},#{credit},#{term},#{teacherName})")
-    void addCourse(Course course);
-
-    @Delete("delete from course where id=#{id}")
-    void del(Long id);
-
-    @Update("update course set courseNo=#{courseNo},name=#{name},credit=#{credit},term=#{term},teacherName=#{teacherName} where id=#{id}")
-    void updateCourse(Course course);
-
-    @Select("select * from course where id in(select course_id from user_course where user_id in(select id from user where user_number=#{userNumber}))")
-    List<CourseVo> findCourseByUserNumber(Long userNumber);
-
-    @Select("select courseNo from course where courseNo=#{courseNo}")
-    Long findCourseNo(Long courseNo);
+    List<Course> selectAll();
+    //实现学生选课
+    @Insert("insert into user_course values(null,#{userId},#{courseId},#{term},null)")
+    void selectCourse(Long userId,Long courseId,String term);
+    //实现学生成绩的登记
+    @Update("update user_course set grade=#{grade} where userId=#{userId} and courseId=#{courseId} and term=#{term}")
+    void InputScore(Long userId,Long courseId,String term,Long grade);
+    //学生查阅某个学期的成绩
+    @Select("select courseId,term,grade from user_course where userId=#{userId} and term=#{term}")
+    ScoreVo checkScore(Long userId,String term);
+    //计算学生某个学期所选的课程总数，需要控制在15-18之间
+    @Select("select count(courseId) from user_course where userId=#{userId} and term=#{term}")
+    Long calCourse(Long userId,String term);
 }

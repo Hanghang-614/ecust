@@ -1,16 +1,14 @@
 package org.ecust.system.pojo.entity;
 
-import com.baomidou.mybatisplus.annotation.TableField;
 import lombok.Data;
 
 @Data
-public class Course{
-    private Long id;
-    @TableField("courseNo")
-    private Long courseNo;
+public class Course
+{
+    private Long courseId;
     private String name;
+    private String classroom;
     private float credit;
-    private Long term;
-    @TableField("teacherName")
-    private String teacherName;
+    private Long hour;
+    private String term;
 }

@@ -1,9 +1,9 @@
 server:
-  port: 8080
+  port: 8111
 spring:
   datasource:
-    driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://124.71.195.153:3306/student_management?useUnicode=true&characterEncoding=UTF-8&serverTimeZone=UTC
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://124.71.195.153:3306/student_manage?useUnicode=true&characterEncoding=UTF-8&serverTimeZone=UTC
     username: root
     password: wch924
 mybatis-plus:

@@ -1,13 +1,11 @@
-package org.ecust.system.pojo.entity;
+package org.ecust.system.pojo.vo;
 
 import lombok.Data;
 
 @Data
-public class UserCourse
+public class ScoreVo
 {
-    private Long id;
     private Long courseId;
-    private Long userId;
     private String term;
     private Long grade;
 }

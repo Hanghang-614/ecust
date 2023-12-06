@@ -1,20 +1,15 @@
 package org.ecust.system.service;
 
 import org.ecust.system.pojo.entity.Course;
-import org.ecust.system.pojo.param.PageParam;
-import org.ecust.system.pojo.vo.CourseVo;
+import org.ecust.system.pojo.entity.UserCourse;
+import org.ecust.system.pojo.vo.ScoreVo;
+
 import java.util.List;
 
 public interface CourseService {
-    List<Course> getAllCourseOrById(PageParam param);
-    List<CourseVo> findAll();
-    List<Course> findById(Long id);
-    List<CourseVo> search(String name);
-    List<CourseVo> findTerm(Long term);
-    void addCourse(Course course);
-    void del(Long id);
-    void delAll(Long[] ids);
-    void updateCourse(Course course);
-    List<CourseVo> findCourseByUserNumber(Long userNumber);
-    Long findCourseNo(Long CourseNo);
+    List<Course> selectAll();
+    void selectCourse(Long userId,Long courseId,String term);
+    void InputScore(Long userId,Long courseId,String term,Long grade);
+    ScoreVo checkScore(Long userId,String term);
+    boolean calCourse(Long userId,String term);
 }
