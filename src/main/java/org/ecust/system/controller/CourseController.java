@@ -36,10 +36,14 @@ public class CourseController {
     void InputScore(Long userId,Long courseId,String term,Long grade){courseService.InputScore(userId,courseId,term,grade);}
 
     @PostMapping("checkScore")
-    @ApiOperation("学生查询某个学期的学习成绩")
-    ScoreVo checkScore(Long userId,String term){return courseService.checkScore(userId,term);}
+    @ApiOperation("学生分页查询某个学期的学习成绩")
+    ScoreVo checkScore(Long userId,String term,Long start,Long number){return courseService.checkScore(userId,term,start,number);}
 
     @PostMapping("calCourse")
     @ApiOperation("判断学生某学期选课数量是否处于正常范围15-18")
     boolean calCourse(Long userId,String term){return courseService.calCourse(userId,term);}
+
+    @PostMapping("findCourseByPage")
+    @ApiOperation("学生分页查询课程")
+    List<Course> findCourseByPage(Long start,Long number){return courseService.findCourseByPage(start,number);}
 }

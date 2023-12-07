@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 import org.ecust.system.pojo.entity.Role;
 import java.util.List;
 
@@ -17,4 +18,6 @@ public interface RoleMapper extends BaseMapper<Role> {
   void insertRole(Role role);
   @Select("select roleName from role where roleId=(select roleId from user where studentId=#{studentId})")
   String selectBystudentId(String studentId);
+  @Update("update user set roleId=#{roleId} where studentId=#{studentId}")
+  void allocRole(String studentId,Long roleId);
 }

@@ -31,4 +31,6 @@ public class RoleServiceImpl implements RoleService{
     }
     @Override
     public String selectBystudentId(String studentId){return roleMapper.selectBystudentId(studentId);}
+    @Override
+    public void allocRole(String studentId,Long roleId){ roleMapper.allocRole(studentId,roleId);}
 }

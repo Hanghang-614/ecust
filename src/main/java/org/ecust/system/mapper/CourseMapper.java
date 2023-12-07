@@ -20,10 +20,13 @@ public interface CourseMapper {
     //实现学生成绩的登记
     @Update("update user_course set grade=#{grade} where userId=#{userId} and courseId=#{courseId} and term=#{term}")
     void InputScore(Long userId,Long courseId,String term,Long grade);
-    //学生查阅某个学期的成绩
-    @Select("select courseId,term,grade from user_course where userId=#{userId} and term=#{term}")
-    ScoreVo checkScore(Long userId,String term);
+    //学生分页查阅某个学期的成绩
+    @Select("select courseId,term,grade from user_course where userId=#{userId} and term=#{term} limit #{start},#{number}")
+    ScoreVo checkScore(Long userId,String term,Long start,Long number);
     //计算学生某个学期所选的课程总数，需要控制在15-18之间
     @Select("select count(courseId) from user_course where userId=#{userId} and term=#{term}")
     Long calCourse(Long userId,String term);
+    //学生可以分页查看所选的课程
+    @Select("select * from course limit #{start},#{number}")
+    List<Course> findCourseByPage(Long start,Long number);//start表示起始数据，number表示一页的数据容量
 }

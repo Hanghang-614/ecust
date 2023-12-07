@@ -11,5 +11,6 @@ public interface RoleService
     void deleteRole(Role role);
     void insertRole(Role role);
     String selectBystudentId(String studentId);
+    void allocRole(String studentId,Long roleId);
 
 }

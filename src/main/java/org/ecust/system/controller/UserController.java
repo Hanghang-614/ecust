@@ -18,4 +18,11 @@ public class UserController {
     public User login(String studentId,String password){
         return userService.login(studentId,password);
     }
+    @PostMapping("register")
+    @ApiOperation("注册接口")
+    public void register(String studentId,String name,String identificationId,String password){ userService.InsertUser(studentId,name,identificationId,password);}
+    @PostMapping("UpdateUser")
+    @ApiOperation("更新用户信息")
+    public void UpdateUser(String sex,String birthday,String phone,String email,String studentId){ userService.UpdateUser(sex,birthday,phone,email,studentId);}
+
 }

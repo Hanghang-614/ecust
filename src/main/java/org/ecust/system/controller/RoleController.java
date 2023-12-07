@@ -33,4 +33,7 @@ public class RoleController {
     @PostMapping("selectBystudentId")
     @ApiOperation("根据用户账号查询角色信息")
     String selectBystudentId(String studentId){ return roleService.selectBystudentId(studentId);}
+    @PostMapping("allocRole")
+    @ApiOperation("为用户分配角色")
+    void allocRole(String studentId,Long roleId){roleService.allocRole(studentId,roleId);}
 }

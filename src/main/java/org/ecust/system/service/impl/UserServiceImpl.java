@@ -18,5 +18,14 @@ public class UserServiceImpl implements UserService {
     {
         return userMapper.login(studentId,password);
     }
-
+    @Override
+    public void InsertUser(String studentId,String name,String identificationId,String password)
+    {
+        userMapper.insertUser(studentId,name,identificationId,password);
+    }
+    @Override
+    public void UpdateUser(String sex,String birthday,String phone,String email,String studentId)
+    {
+        userMapper.UpdateUser(sex,birthday,phone,email,studentId);
+    }
 }

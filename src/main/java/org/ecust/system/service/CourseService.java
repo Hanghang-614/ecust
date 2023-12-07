@@ -10,6 +10,7 @@ public interface CourseService {
     List<Course> selectAll();
     void selectCourse(Long userId,Long courseId,String term);
     void InputScore(Long userId,Long courseId,String term,Long grade);
-    ScoreVo checkScore(Long userId,String term);
+    ScoreVo checkScore(Long userId,String term,Long start,Long number);
     boolean calCourse(Long userId,String term);
+    List<Course> findCourseByPage(Long start,Long number);
 }
