@@ -14,4 +14,8 @@ public interface UserMapper extends BaseMapper<User>
    public void insertUser(String studentId,String name,String identificationId,String password);//注册用户
    @Update("update user set sex=#{sex},birthday=#{birthday},phone=#{phone},email=#{email} where studentId=#{studentId}")
    public void UpdateUser(String sex,String birthday,String phone,String email,String studentId);
+   @Update("update user set status=1 where studentId=#{studentId}")
+   public void Keepalive(String studentId);
+   @Update("update user set status=0 where studentId=#{studentId}")
+   public void cancel(String studentId);
 }

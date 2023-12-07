@@ -20,4 +20,12 @@ public class FunctionServiceImpl implements FunctionService {
     public List<Function> selectByRoleId(Long roleId){
         return functionMapper.selectByRoleId(roleId);
     }//查询指定角色所有的权限功能
+    @Override
+    public void deleteRoleFunction(Long roleId,Long functionId) {
+        functionMapper.deleteRoleFunction(roleId,functionId);
+    }
+    @Override
+    public void insertRoleFunction(Long roleId,Long functionId){
+        functionMapper.InsertRoleFunction(roleId,functionId);
+    }
 }

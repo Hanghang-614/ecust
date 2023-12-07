@@ -14,4 +14,5 @@ public class User {
     private String birthday;
     private String password;
     private Long roleId;
+    private Long status;
 }

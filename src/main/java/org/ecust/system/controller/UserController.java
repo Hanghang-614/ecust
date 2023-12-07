@@ -24,5 +24,11 @@ public class UserController {
     @PostMapping("UpdateUser")
     @ApiOperation("更新用户信息")
     public void UpdateUser(String sex,String birthday,String phone,String email,String studentId){ userService.UpdateUser(sex,birthday,phone,email,studentId);}
+    @PostMapping("Keepalive")
+    @ApiOperation("激活用户")
+    public void Keepalive(String studentId){userService.Keepalive(studentId);};
+    @PostMapping("cancel")
+    @ApiOperation("注销用户")
+    public void cancel(String studentId){userService.cancel(studentId);}
 
 }

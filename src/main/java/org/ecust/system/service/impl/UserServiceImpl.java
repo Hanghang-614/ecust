@@ -28,4 +28,8 @@ public class UserServiceImpl implements UserService {
     {
         userMapper.UpdateUser(sex,birthday,phone,email,studentId);
     }
+    @Override
+    public void Keepalive(String studentId){ userMapper.Keepalive(studentId);}
+    @Override
+    public void cancel(String studentId){ userMapper.cancel(studentId);}
 }

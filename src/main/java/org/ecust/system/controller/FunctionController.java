@@ -22,4 +22,11 @@ public class FunctionController
     @PostMapping("selectByRoleId")
     @ApiOperation("查询指定角色（学生/管理员）对应所有的权限功能")
     List<Function> selectByRoleId(Long roleId){return functionService.selectByRoleId(roleId);}
+    @PostMapping("deleteRoleFunction")
+    @ApiOperation("删除某个角色功能关联")
+    void deleteRoleFunction(Long roleId,Long functionId){functionService.deleteRoleFunction(roleId,functionId);}
+    @PostMapping("insertRoleFunction")
+    @ApiOperation("新增某个角色功能关联")
+    void insertRoleFunction(Long roleId,Long functionId){functionService.insertRoleFunction(roleId,functionId);}
+
 }
