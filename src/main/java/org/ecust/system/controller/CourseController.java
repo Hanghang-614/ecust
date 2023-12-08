@@ -1,10 +1,10 @@
 package org.ecust.system.controller;
 
-import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.ecust.system.pojo.entity.Course;
 import org.ecust.system.pojo.entity.UserCourse;
 import org.ecust.system.pojo.vo.CourseVo;
+import org.ecust.system.pojo.vo.GradeVo;
 import org.ecust.system.pojo.vo.ScoreVo;
 import org.ecust.system.service.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,6 +43,9 @@ public class CourseController {
     @PostMapping("checkScore")
     @ApiOperation("学生分页查询某个学期的学习成绩")
     List<ScoreVo> checkScore(Long userId,String term,Long start,Long number){return courseService.checkScore(userId,term,start,number);}
+//    @PostMapping("checkScoreByterm")
+//    @ApiOperation("学生查询某个学期的学习成绩")
+//    List<GradeVo> checkScoreByterm(String studentId, String term){return courseService.checkScoreByterm(studentId, term);}
 
     @PostMapping("calCourse")
     @ApiOperation("判断学生某学期选课数量是否处于正常范围15-18")

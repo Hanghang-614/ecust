@@ -4,6 +4,7 @@ import org.ecust.system.mapper.CourseMapper;
 import org.ecust.system.pojo.entity.Course;
 import org.ecust.system.pojo.entity.UserCourse;
 import org.ecust.system.pojo.vo.CourseVo;
+import org.ecust.system.pojo.vo.GradeVo;
 import org.ecust.system.pojo.vo.ScoreVo;
 import org.ecust.system.service.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,8 @@ public class CourseServiceImpl implements CourseService {
     public void InsertScore(Long userId,Long courseId,String term,Long grade){ courseMapper.InsertScore(userId,courseId,term,grade);}
     @Override
     public void UpdateScore(Long userId,Long courseId,String term,Long grade){courseMapper.UpdateScore(userId, courseId, term, grade);}
+//    @Override
+//    public List<GradeVo> checkScoreByterm(String studentId,String term){return courseMapper.checkScoreByterm(studentId, term); }
     @Override
     public List<ScoreVo> checkScore(Long userId,String term,Long start,Long number){return courseMapper.checkScore(userId,term,start,number); }
     @Override
