@@ -4,7 +4,6 @@ import org.ecust.system.mapper.CourseMapper;
 import org.ecust.system.pojo.entity.Course;
 import org.ecust.system.pojo.entity.UserCourse;
 import org.ecust.system.pojo.vo.CourseVo;
-import org.ecust.system.pojo.vo.GradeVo;
 import org.ecust.system.pojo.vo.ScoreVo;
 import org.ecust.system.service.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +22,14 @@ public class CourseServiceImpl implements CourseService {
     @Override
     public void selectCourse(Long userId,Long courseId,String term){
         courseMapper.selectCourse(userId,courseId,term);
+    }
+    @Override
+    public void selectManyCourses(List<UserCourse> userInfos)
+    {
+        for(UserCourse entity:userInfos)
+        {
+            courseMapper.selectCourse(entity.getUserId(),entity.getCourseId(),entity.getTerm());
+        }
     }
     @Override
     public void InsertScore(Long userId,Long courseId,String term,Long grade){ courseMapper.InsertScore(userId,courseId,term,grade);}
@@ -45,4 +52,6 @@ public class CourseServiceImpl implements CourseService {
     }
     @Override
     public List<CourseVo> findCourse(String studentId,String term){ return courseMapper.findCourse(studentId,term);}
+    @Override
+    public List<Course> findCourseByterm(String term){return courseMapper.findCourseByterm(term); }
 }

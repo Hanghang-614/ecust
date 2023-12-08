@@ -2,9 +2,9 @@ package org.ecust.system.controller;
 
 import io.swagger.annotations.ApiOperation;
 import org.ecust.system.pojo.entity.Course;
+
 import org.ecust.system.pojo.entity.UserCourse;
 import org.ecust.system.pojo.vo.CourseVo;
-import org.ecust.system.pojo.vo.GradeVo;
 import org.ecust.system.pojo.vo.ScoreVo;
 import org.ecust.system.service.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +32,10 @@ public class CourseController {
         courseService.selectCourse(userId, courseId, term);
     }
 
+    @PostMapping("selectManyCourses")
+    @ApiOperation("学生批量选课")
+    void selectManyCourses(List<UserCourse> userInfos){courseService.selectManyCourses(userInfos);}
+
     @PostMapping("InsertScore")
     @ApiOperation("录入学生的成绩")
     void InsertScore(Long userId,Long courseId,String term,Long grade){courseService.InsertScore(userId, courseId, term, grade);}
@@ -43,6 +47,7 @@ public class CourseController {
     @PostMapping("checkScore")
     @ApiOperation("学生分页查询某个学期的学习成绩")
     List<ScoreVo> checkScore(Long userId,String term,Long start,Long number){return courseService.checkScore(userId,term,start,number);}
+
 //    @PostMapping("checkScoreByterm")
 //    @ApiOperation("学生查询某个学期的学习成绩")
 //    List<GradeVo> checkScoreByterm(String studentId, String term){return courseService.checkScoreByterm(studentId, term);}
@@ -58,4 +63,8 @@ public class CourseController {
     @PostMapping("findCourse")
     @ApiOperation("学生根据学号和学期查看个人所选课程")
     List<CourseVo> findCourse(String studentId,String term){return courseService.findCourse(studentId,term);}
+
+    @PostMapping("findCourseByterm")
+    @ApiOperation("根据学期查看开设的课程")
+    List<Course> findCourseByterm(String term){return courseService.findCourseByterm(term); }
 }

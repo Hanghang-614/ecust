@@ -2,6 +2,7 @@ package org.ecust.system.mapper;
 
 
 import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 import org.ecust.system.pojo.entity.Course;
@@ -9,6 +10,7 @@ import org.ecust.system.pojo.entity.UserCourse;
 import org.ecust.system.pojo.vo.CourseVo;
 import org.ecust.system.pojo.vo.GradeVo;
 import org.ecust.system.pojo.vo.ScoreVo;
+
 
 import java.util.List;
 
@@ -19,6 +21,7 @@ public interface CourseMapper {
     //实现学生选课
     @Insert("insert into user_course values(null,#{userId},#{courseId},#{term},null)")
     void selectCourse(Long userId,Long courseId,String term);
+
     //实现学生成绩的录入
     @Insert("insert into user_course(userId,courseId,term,grade) values(#{userId},#{courseId},#{term},#{grade})")
     void InsertScore(Long userId,Long courseId,String term,Long grade);
@@ -45,4 +48,8 @@ public interface CourseMapper {
     @Select("select c.userId,name,c.courseId,courseName,c.term from user a,course b,user_course c where a.userId=c.userId and b.courseId=c.courseId " +
             "and c.term=#{term} and studentId=#{studentId}")
     List<CourseVo> findCourse(String studentId,String term);
+    //根据学期查看开的课程
+    @Select("select * from course where term=#{term}")
+    List<Course> findCourseByterm(String term);
+
 }
