@@ -4,6 +4,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.ecust.system.pojo.entity.Course;
 import org.ecust.system.pojo.entity.UserCourse;
+import org.ecust.system.pojo.vo.CourseVo;
 import org.ecust.system.pojo.vo.ScoreVo;
 import org.ecust.system.service.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,4 +47,8 @@ public class CourseController {
     @PostMapping("findCourseByPage")
     @ApiOperation("学生分页查询课程")
     List<Course> findCourseByPage(Long start,Long number){return courseService.findCourseByPage(start,number);}
+
+    @PostMapping("findCourse")
+    @ApiOperation("学生根据学号和学期查看个人所选课程")
+    List<CourseVo> findCourse(String studentId,String term){return courseService.findCourse(studentId,term);}
 }

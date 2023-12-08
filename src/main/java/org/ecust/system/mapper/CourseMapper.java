@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 import org.ecust.system.pojo.entity.Course;
 import org.ecust.system.pojo.entity.UserCourse;
+import org.ecust.system.pojo.vo.CourseVo;
 import org.ecust.system.pojo.vo.ScoreVo;
 
 import java.util.List;
@@ -29,4 +30,7 @@ public interface CourseMapper {
     //学生可以分页查看所选的课程
     @Select("select * from course limit #{start},#{number}")
     List<Course> findCourseByPage(Long start,Long number);//start表示起始数据，number表示一页的数据容量
+    //学生可以通过学号和学期查看本学期所选的课程
+    @Select("select userId,courseId,term from user_course where term=#{term} and userId=(select userId from user where studentId=#{studentId})")
+    List<CourseVo> findCourse(String studentId,String term);
 }

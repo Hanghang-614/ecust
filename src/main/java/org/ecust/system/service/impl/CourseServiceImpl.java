@@ -3,6 +3,7 @@ package org.ecust.system.service.impl;
 import org.ecust.system.mapper.CourseMapper;
 import org.ecust.system.pojo.entity.Course;
 import org.ecust.system.pojo.entity.UserCourse;
+import org.ecust.system.pojo.vo.CourseVo;
 import org.ecust.system.pojo.vo.ScoreVo;
 import org.ecust.system.service.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,4 +38,6 @@ public class CourseServiceImpl implements CourseService {
     public List<Course> findCourseByPage(Long start,Long number){
         return courseMapper.findCourseByPage(start,number);
     }
+    @Override
+    public List<CourseVo> findCourse(String studentId,String term){ return courseMapper.findCourse(studentId,term);}
 }
