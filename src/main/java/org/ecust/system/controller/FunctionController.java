@@ -2,9 +2,11 @@ package org.ecust.system.controller;
 
 import io.swagger.annotations.ApiOperation;
 import org.ecust.system.pojo.entity.Function;
+import org.ecust.system.pojo.entity.RoleFunction;
 import org.ecust.system.service.FunctionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -25,8 +27,13 @@ public class FunctionController
     @PostMapping("deleteRoleFunction")
     @ApiOperation("删除某个角色功能关联")
     void deleteRoleFunction(Long roleId,Long functionId){functionService.deleteRoleFunction(roleId,functionId);}
+
     @PostMapping("insertRoleFunction")
     @ApiOperation("新增某个角色功能关联")
     void insertRoleFunction(Long roleId,Long functionId){functionService.insertRoleFunction(roleId,functionId);}
+
+    @PostMapping("insertManyRoleFunctions")
+    @ApiOperation("批量新增某些角色功能关联")
+    void insertManyRoleFunctions(@RequestBody List<RoleFunction> userInfos){functionService.insertManyRoleFunctions(userInfos);}
 
 }

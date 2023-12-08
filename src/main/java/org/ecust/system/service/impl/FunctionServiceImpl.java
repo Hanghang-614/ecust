@@ -2,6 +2,7 @@ package org.ecust.system.service.impl;
 
 import org.ecust.system.mapper.FunctionMapper;
 import org.ecust.system.pojo.entity.Function;
+import org.ecust.system.pojo.entity.RoleFunction;
 import org.ecust.system.service.FunctionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,5 +28,11 @@ public class FunctionServiceImpl implements FunctionService {
     @Override
     public void insertRoleFunction(Long roleId,Long functionId){
         functionMapper.InsertRoleFunction(roleId,functionId);
+    }
+    @Override
+    public void insertManyRoleFunctions(List<RoleFunction> userInfos){
+        for(RoleFunction entity:userInfos){
+            functionMapper.InsertRoleFunction(entity.getRoleId(),entity.getFunctionId());
+        }
     }
 }

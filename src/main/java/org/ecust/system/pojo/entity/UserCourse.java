@@ -1,6 +1,8 @@
 package org.ecust.system.pojo.entity;
 
+
 import lombok.Data;
+
 
 @Data
 public class UserCourse

@@ -9,6 +9,7 @@ import org.ecust.system.pojo.vo.ScoreVo;
 import org.ecust.system.service.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -34,7 +35,7 @@ public class CourseController {
 
     @PostMapping("selectManyCourses")
     @ApiOperation("学生批量选课")
-    void selectManyCourses(List<UserCourse> userInfos){courseService.selectManyCourses(userInfos);}
+    void selectManyCourses(@RequestBody List<UserCourse> userInfos){courseService.selectManyCourses(userInfos);}
 
     @PostMapping("InsertScore")
     @ApiOperation("录入学生的成绩")
