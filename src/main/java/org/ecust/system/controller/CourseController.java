@@ -32,13 +32,17 @@ public class CourseController {
         courseService.selectCourse(userId, courseId, term);
     }
 
-    @PostMapping("InputScore")
+    @PostMapping("InsertScore")
     @ApiOperation("录入学生的成绩")
-    void InputScore(Long userId,Long courseId,String term,Long grade){courseService.InputScore(userId,courseId,term,grade);}
+    void InsertScore(Long userId,Long courseId,String term,Long grade){courseService.InsertScore(userId, courseId, term, grade);}
+
+    @PostMapping("UpdateScore")
+    @ApiOperation("修改学生的成绩")
+    void UpdateScore(Long userId,Long courseId,String term,Long grade){courseService.UpdateScore(userId,courseId,term,grade);}
 
     @PostMapping("checkScore")
     @ApiOperation("学生分页查询某个学期的学习成绩")
-    ScoreVo checkScore(Long userId,String term,Long start,Long number){return courseService.checkScore(userId,term,start,number);}
+    List<ScoreVo> checkScore(Long userId,String term,Long start,Long number){return courseService.checkScore(userId,term,start,number);}
 
     @PostMapping("calCourse")
     @ApiOperation("判断学生某学期选课数量是否处于正常范围15-18")

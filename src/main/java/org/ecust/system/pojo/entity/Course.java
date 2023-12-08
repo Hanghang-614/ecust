@@ -6,7 +6,7 @@ import lombok.Data;
 public class Course
 {
     private Long courseId;
-    private String name;
+    private String courseName;
     private String classroom;
     private float credit;
     private Long hour;

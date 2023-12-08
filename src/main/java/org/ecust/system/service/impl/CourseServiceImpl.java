@@ -24,9 +24,11 @@ public class CourseServiceImpl implements CourseService {
         courseMapper.selectCourse(userId,courseId,term);
     }
     @Override
-    public void InputScore(Long userId,Long courseId,String term,Long grade){ courseMapper.InputScore(userId,courseId,term,grade);}
+    public void InsertScore(Long userId,Long courseId,String term,Long grade){ courseMapper.InsertScore(userId,courseId,term,grade);}
     @Override
-    public ScoreVo checkScore(Long userId,String term,Long start,Long number){return courseMapper.checkScore(userId,term,start,number); }
+    public void UpdateScore(Long userId,Long courseId,String term,Long grade){courseMapper.UpdateScore(userId, courseId, term, grade);}
+    @Override
+    public List<ScoreVo> checkScore(Long userId,String term,Long start,Long number){return courseMapper.checkScore(userId,term,start,number); }
     @Override
     public boolean calCourse(Long userId,String term)
     {
