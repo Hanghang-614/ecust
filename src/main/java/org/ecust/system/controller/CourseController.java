@@ -54,7 +54,7 @@ public class CourseController {
 //    List<GradeVo> checkScoreByterm(String studentId, String term){return courseService.checkScoreByterm(studentId, term);}
 
     @PostMapping("calCourse")
-    @ApiOperation("判断学生某学期选课数量是否处于正常范围15-18")
+    @ApiOperation("判断学生某学期选课数量是否处于正常范围5-14")
     boolean calCourse(Long userId,String term){return courseService.calCourse(userId,term);}
 
     @PostMapping("findCourseByPage")

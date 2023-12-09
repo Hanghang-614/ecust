@@ -30,7 +30,7 @@ public interface CourseMapper {
     void UpdateScore(Long userId,Long courseId,String term,Long grade);
 
     //学生分页查询某个学期的成绩
-    @Select("select courseId,term,grade from user_course where userId=#{userId} and term=#{term} limit #{start},#{number}")
+    @Select("select b.courseId,courseName,b.term,grade from course a,user_course b where a.courseId=b.courseId and userId=#{userId} and b.term=#{term} limit #{start},#{number}")
     List<ScoreVo> checkScore(Long userId,String term,Long start,Long number);
 
     //学生查询某个学期的成绩

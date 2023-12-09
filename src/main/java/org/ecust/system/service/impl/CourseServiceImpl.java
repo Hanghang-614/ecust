@@ -43,7 +43,7 @@ public class CourseServiceImpl implements CourseService {
     public boolean calCourse(Long userId,String term)
     {
         Long res=courseMapper.calCourse(userId,term);
-        if(res>=15 && res<=18) return true;
+        if(res>=5 && res<=14) return true;//这里做了修改
         else return false;
     }
     @Override
