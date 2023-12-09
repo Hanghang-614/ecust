@@ -106,7 +106,7 @@ public class ExcelFileExporter {
                 row.createCell(1).setCellValue(entity.getName());
                 row.createCell(2).setCellValue(entity.getCourseId());
                 row.createCell(3).setCellValue(entity.getCourseName());
-                row.createCell(4).setCellValue(entity.getGrade());
+                row.createCell(4).setCellValue(entity.getGrade()==null ? "成绩未录入":String.valueOf(entity.getGrade()));
                 row.createCell(5).setCellValue(entity.getTerm());
             }
 
