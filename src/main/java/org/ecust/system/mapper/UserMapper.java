@@ -7,6 +7,8 @@ import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 import org.ecust.system.pojo.entity.User;
 
+import java.util.List;
+
 public interface UserMapper extends BaseMapper<User>
 {
    @Select("select * from user where studentId=#{studentId} and password=#{password}")
@@ -19,4 +21,6 @@ public interface UserMapper extends BaseMapper<User>
    public void Keepalive(String studentId);
    @Update("update user set status=0 where studentId=#{studentId}")
    public void cancel(String studentId);
+   @Select("select * from user where roleId=1")
+   public List<User> showAllusers();
 }

@@ -7,6 +7,8 @@ import org.ecust.system.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class UserServiceImpl implements UserService {
     @Autowired
@@ -32,4 +34,6 @@ public class UserServiceImpl implements UserService {
     public void Keepalive(String studentId){ userMapper.Keepalive(studentId);}
     @Override
     public void cancel(String studentId){ userMapper.cancel(studentId);}
+    @Override
+    public List<User> showAllusers(){return userMapper.showAllusers();}
 }
