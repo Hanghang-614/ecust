@@ -11,7 +11,6 @@ public interface CourseService {
     List<Course> selectAll();
     void selectCourse(Long userId,Long courseId,String term);
     void InsertScore(Long userId,Long courseId,String term,Long grade);
-    void UpdateScore(Long userId,Long courseId,String term,Long grade);
 
     List<ScoreVo> checkScore(Long userId,String term,Long start,Long number);
 //    List<GradeVo> checkScoreByterm(String studentId,String term);

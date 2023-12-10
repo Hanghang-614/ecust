@@ -24,8 +24,7 @@ public class CourseServiceImpl implements CourseService {
         courseMapper.selectCourse(userId,courseId,term);
     }
     @Override
-    public void selectManyCourses(List<UserCourse> userInfos)
-    {
+    public void selectManyCourses(List<UserCourse> userInfos){
         for(UserCourse entity:userInfos)
         {
             courseMapper.selectCourse(entity.getUserId(),entity.getCourseId(),entity.getTerm());
@@ -33,8 +32,6 @@ public class CourseServiceImpl implements CourseService {
     }
     @Override
     public void InsertScore(Long userId,Long courseId,String term,Long grade){ courseMapper.InsertScore(userId,courseId,term,grade);}
-    @Override
-    public void UpdateScore(Long userId,Long courseId,String term,Long grade){courseMapper.UpdateScore(userId, courseId, term, grade);}
 //    @Override
 //    public List<GradeVo> checkScoreByterm(String studentId,String term){return courseMapper.checkScoreByterm(studentId, term); }
     @Override

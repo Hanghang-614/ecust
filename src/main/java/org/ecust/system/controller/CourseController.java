@@ -7,6 +7,7 @@ import org.ecust.system.pojo.entity.UserCourse;
 import org.ecust.system.pojo.vo.CourseVo;
 import org.ecust.system.pojo.vo.ScoreVo;
 import org.ecust.system.service.CourseService;
+import org.ecust.system.service.ScoreService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,6 +21,8 @@ import java.util.List;
 public class CourseController {
     @Autowired
     private CourseService courseService;
+    @Autowired
+    private ScoreService scoreService;
 
     @PostMapping("findAllCourse")
     @ApiOperation("查询所有课程信息")
@@ -39,11 +42,38 @@ public class CourseController {
 
     @PostMapping("InsertScore")
     @ApiOperation("录入学生的成绩")
-    void InsertScore(Long userId,Long courseId,String term,Long grade){courseService.InsertScore(userId, courseId, term, grade);}
+    String InsertScore(Long userId,Long courseId,String term,Long grade){
+        Long res=scoreService.check(userId, courseId,term);
+        Long Nullres=scoreService.checkNull(userId, courseId,term);
+        if(res==1 && Nullres==1) {
+            courseService.InsertScore(userId, courseId, term, grade);
+            return "成绩录入成功!";
+        }
+        else if(res==1 && Nullres==0){
+            return "该门课成绩已经被录入!";
+        }
+        else{
+            return "该生本学期未选择这门课程!";
+        }
+    }
 
     @PostMapping("UpdateScore")
     @ApiOperation("修改学生的成绩")
-    void UpdateScore(Long userId,Long courseId,String term,Long grade){courseService.UpdateScore(userId,courseId,term,grade);}
+    String UpdateScore(Long userId,Long courseId,String term,Long grade)
+    {
+        Long res=scoreService.check(userId, courseId,term);
+        Long Nullres=scoreService.checkNull(userId, courseId,term);
+        if(res==1 && Nullres==0) {
+            courseService.InsertScore(userId, courseId, term, grade);
+            return "成绩修改成功!";
+        }
+        else if(res==1 && Nullres==1){
+           return "成绩尚未被录入,无法进行修改!";
+        }
+        else{
+            return "该生本学期未选择这门课程!";
+        }
+    }
 
     @PostMapping("checkScore")
     @ApiOperation("学生分页查询某个学期的学习成绩")

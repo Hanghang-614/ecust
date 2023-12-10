@@ -21,6 +21,6 @@ public interface UserMapper extends BaseMapper<User>
    public void Keepalive(String studentId);
    @Update("update user set status=0 where studentId=#{studentId}")
    public void cancel(String studentId);
-   @Select("select * from user where roleId=1")
+   @Select("select * from user")
    public List<User> showAllusers();
 }
